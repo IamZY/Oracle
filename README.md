@@ -12,4 +12,20 @@
   where to_char(hire_date,'yyyy') in ('1995','1996','1997','1998')
   ```
 
++ top-n分析
+
+  ```sql
+  select rn,employee_id,last_name,salary 
+  from (
+    select rownum rn,employee_id,last_name,salary 
+    from 
+    (
+      select rownum,employee_id,last_name,salary
+      from employees 
+      order by salary desc
+    )
+  )
+  where rn > 40 and rn <= 50
+  ```
+
   
